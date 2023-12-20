@@ -1,7 +1,9 @@
 # News or Magazine Website Named EnimaExpress. News
 
-This Website Provides the News.
-Currently, two official plugins are available:
+This Responsive Website Provides the News.
+Components with Components specialty:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- <h1>Banner: </h1> Using Moment.js to show the current time for a specific country and <br> showing the latest news by using Marquee.<br>moment.js link: https://momentjs.com/docs/#/displaying/
+<br>
+Marquee docs link: https://momentjs.com/docs/#/displaying/
+
