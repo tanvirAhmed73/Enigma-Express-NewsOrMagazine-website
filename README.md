@@ -1,8 +1,8 @@
-# React + Vite
+# News or Magazine Website Named EnimaExpress. News
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This Responsive Website Provides the News.<br>
+<h2>Components with Components specialty:</h2>
+Live site Link:
 
-Currently, two official plugins are available:
+- <h3>Banner: </h3> Using Moment.js to show the current time for a specific country and showing the latest news by using Marquee, The latest News line will be paused on hover.<br>moment.js link: https://momentjs.com/docs/#/displaying/ <br> Marquee docs link: https://www.react-fast-marquee.com/documentation
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
