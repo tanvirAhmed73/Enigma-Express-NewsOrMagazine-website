@@ -16,6 +16,9 @@ import Business from './AllComponents/Pages/Business';
 import Sports from './AllComponents/Pages/Sports';
 import Fashion from './AllComponents/Pages/Fashion';
 import Politics from './AllComponents/Pages/Politics';
+import Register from './LoginOrRegister/Register';
+import Login from './LoginOrRegister/Login';
+import AuthProvider from './AuthProvider/AuthProvider';
 
 const router = createBrowserRouter([
   {
@@ -60,15 +63,27 @@ const router = createBrowserRouter([
     {
       path: '/addNews',
       element: <AddNews></AddNews>
+    },
+    {
+      path: '/register',
+      element: <Register></Register>
+    },
+    {
+      path: '/login',
+      element: <Login></Login>
     }
   ]
   },
 ]);
 
+
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <div className='font-Poppins'>
-      <RouterProvider router={router} />
-    </div>
+    <AuthProvider>
+      <div className='font-Poppins'>
+        <RouterProvider router={router} />
+      </div>
+    </AuthProvider>
   </React.StrictMode>,
 )

@@ -1,12 +1,15 @@
 import moment from "moment";
+import { useContext } from "react";
 import Marquee from "react-fast-marquee";
 import { FaFacebook } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import { FaInstagramSquare } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const Navbar = () => {
+  const {user} = useContext(AuthContext);
   return (
     <div>
       {/* cover Picture */}
@@ -128,7 +131,12 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <a className=" px-3 py-1 md:mr-5 rounded-lg hover:bg-slate-700">Login</a>
+          {
+            user?
+            <div>{user.email}</div>
+            :
+            <Link to={'/register'} className=" px-3 py-1 md:mr-5 rounded-lg hover:bg-slate-700">Login/Register</Link>
+          }
         </div>
       </div>
 
