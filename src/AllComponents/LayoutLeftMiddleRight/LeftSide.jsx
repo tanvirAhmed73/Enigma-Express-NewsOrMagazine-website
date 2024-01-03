@@ -7,7 +7,7 @@ const LeftSide = ({title, filterNews}) => {
             <SectionTitle title={title}></SectionTitle>
             {
                 leftNewsFilter.map(news => 
-                <div  className="mb-2 md:mb-10 text-xs">
+                <div key={news._id} className="mb-2 md:mb-10 text-xs">
                     <img src={news.newsUrl} alt="" />
                     <span className="font-semibold text-gray-600">{news.section.toUpperCase()} / </span>
                      

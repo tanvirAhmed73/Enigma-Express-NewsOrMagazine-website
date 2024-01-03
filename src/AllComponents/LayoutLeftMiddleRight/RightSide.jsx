@@ -13,7 +13,7 @@ const RightSide = ({filterNews}) => {
             </div>
             {
                 advertiseMent.map(ad => 
-                    <div className="md:flex gap-3 text-xs">
+                    <div key={ad._id} className="md:flex gap-3 text-xs">
                         <div>
                             <img className="w-[90px] h-[70px]" src={ad.newsUrl} alt="" />
                         </div>

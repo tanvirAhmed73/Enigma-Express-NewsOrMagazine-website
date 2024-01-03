@@ -1,9 +1,10 @@
-import { useLoaderData } from "react-router-dom";
+
 import Home from "../Home/Home";
+import useAllNews from "../../hooks/useAllNews";
 
 const Business = () => {
-    const allNews = useLoaderData();
-    const filterNews = allNews.filter(news => news.section === 'business')
+    const [news, loading] = useAllNews()
+    const filterNews = news.filter(business => business.section === 'business')
     return (
         <div>
             <Home title="business" filterNews={filterNews}></Home>

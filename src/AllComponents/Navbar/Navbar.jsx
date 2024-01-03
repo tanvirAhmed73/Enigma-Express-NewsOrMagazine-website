@@ -7,13 +7,25 @@ import { FaYoutube } from "react-icons/fa";
 import { FaInstagramSquare } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import ReactLoading from 'react-loading';
 
 const Navbar = () => {
-  const {user} = useContext(AuthContext);
+  const {user,loading,LogOut} = useContext(AuthContext);
+
+  const handleLogOut = ()=>{
+    LogOut()
+      .then(() => {
+        // Sign-out successful.
+      }).catch((error) => {
+        // An error happened.
+      });
+  }
+
+
   return (
     <div>
       {/* cover Picture */}
-        <div className="hero h-[400px]" style={{backgroundImage: 'url(https://i.ibb.co/XXrHb30/Adobe-Stock-r-DGz-O5t0-Iu.jpg)'}}>
+        <div className="hero h-[400px] bg-fixed" style={{backgroundImage: 'url(https://i.ibb.co/XXrHb30/Adobe-Stock-r-DGz-O5t0-Iu.jpg)'}}>
             
                 <div className="hero-content text-center text-neutral-content">
                     <div className="">
@@ -47,7 +59,7 @@ const Navbar = () => {
       <div className="navbar bg-black text-white relative ">
         <div className="navbar-start">
 
-            {/* DROPDOWN MENU */}
+          {/* DROPDOWN MENU */}
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
               <svg
@@ -87,9 +99,17 @@ const Navbar = () => {
               <li>
                 <Link className="hover:bg-slate-700" to={'/business'}>BUSINESS</Link>
               </li>
-              <li>
-                <Link className="hover:bg-slate-700" to={'/addNews'}>Add News</Link>
+              {
+                user? 
+                <li>
+                <Link className="hover:bg-slate-700" to={'/dashboard'}>DASHBOARD</Link>
+                </li>
+                :
+                <li className="hidden">
+                <Link className="hover:bg-slate-700" to={'/dashboard'}>DASHBOARD</Link>
               </li>
+              }
+              
             </ul>
           </div>
 
@@ -100,7 +120,7 @@ const Navbar = () => {
             <FaYoutube />
             <FaInstagramSquare />
         </div>
-        
+
 
           
         </div>
@@ -125,18 +145,37 @@ const Navbar = () => {
               <li>
                 <Link className="hover:bg-slate-700" to={'/business'}>BUSINESS</Link>
               </li>
-              <li>
-                <Link className="hover:bg-slate-700" to={'/addNews'}>Add News</Link>
+              {
+                user? 
+                <li>
+                <Link className="hover:bg-slate-700" to={'/dashboard'}>DASHBOARD</Link>
+                </li>
+                :
+                <li className="hidden">
+                <Link className="hover:bg-slate-700" to={'/dashboard'}>DASHBOARD</Link>
               </li>
+              }
           </ul>
         </div>
         <div className="navbar-end">
           {
-            user?
-            <div>{user.email}</div>
-            :
-            <Link to={'/register'} className=" px-3 py-1 md:mr-5 rounded-lg hover:bg-slate-700">Login/Register</Link>
+            loading? 
+            <div>
+            </div>
+            : 
+            user? 
+            <div>
+              <span>{user.email}</span><span><Link className="ml-2 bg-red-600 p-3 hover:underline" onClick={handleLogOut}>LogOut</Link></span>
+            </div>
+            : 
+            <div>
+            <Link to={'/login'} className=" px-3 py-1 md:mr-5 rounded-lg hover:bg-slate-700">
+            Login/Register
+            </Link>
+
+            </div>
           }
+          
         </div>
       </div>
 

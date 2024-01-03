@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import ReactDOM from 'react-dom/client'
 
 import './index.css'
@@ -18,7 +18,9 @@ import Fashion from './AllComponents/Pages/Fashion';
 import Politics from './AllComponents/Pages/Politics';
 import Register from './LoginOrRegister/Register';
 import Login from './LoginOrRegister/Login';
-import AuthProvider from './AuthProvider/AuthProvider';
+import AuthProvider, { AuthContext } from './AuthProvider/AuthProvider';
+import PrivateRoutes from './PrivateRoutes/PrivateRoutes';
+import DashBoardLayout from './Dashboard/DashBoardLayout/DashBoardLayout';
 
 const router = createBrowserRouter([
   {
@@ -28,41 +30,30 @@ const router = createBrowserRouter([
     {
       path: '/',
       element: <Tech></Tech>,
-      loader: ()=>fetch('http://localhost:5000/allNews')
     },
     {
       path: '/entertainment',
       element: <Entertainment></Entertainment>,
-      loader : ()=>fetch('http://localhost:5000/allNews')
     },
     {
       path: '/politics',
       element: <Politics></Politics>,
-      loader : ()=>fetch('http://localhost:5000/allNews')
     },
     {
       path: '/fashion',
       element: <Fashion></Fashion>,
-      loader : ()=>fetch('http://localhost:5000/allNews')
     },
     {
       path: '/sport',
       element: <Sports></Sports>,
-      loader : ()=>fetch('http://localhost:5000/allNews')
     },
     {
       path: '/business',
       element: <Business></Business>,
-      loader : ()=>fetch('http://localhost:5000/allNews')
     },
     {
       path: '/tech',
-      element: <Tech></Tech>,
-      loader: ()=>fetch('http://localhost:5000/allNews')
-    },
-    {
-      path: '/addNews',
-      element: <AddNews></AddNews>
+      element: <Tech></Tech>
     },
     {
       path: '/register',
@@ -74,6 +65,18 @@ const router = createBrowserRouter([
     }
   ]
   },
+  {
+    path: '/dashboard',
+    element: <DashBoardLayout></DashBoardLayout>,
+    children:[ 
+      {
+          path: 'addNews',
+          element: <PrivateRoutes><AddNews></AddNews></PrivateRoutes>
+      }
+      
+    ]
+
+  }
 ]);
 
 

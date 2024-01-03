@@ -1,14 +1,14 @@
 import { useLoaderData } from "react-router-dom";
 import Home from "../Home/Home";
-import LeftSide from "../LayoutLeftMiddleRight/LeftSide";
+import useAllNews from "../../hooks/useAllNews";
 
 const Tech = () => {
-    const techNews = useLoaderData();
-    const filterNews = techNews.filter(tech => tech.section === 'tech')
+    const [news, loading] = useAllNews()
+    const filterNews = news.filter(tech => tech.section === 'tech')
     
     return (
         <div>
-            <Home title='Tech' filterNews={filterNews}></Home>
+            <Home title='Tech' key={news._id} filterNews={filterNews}></Home>
         </div>
     );
 };

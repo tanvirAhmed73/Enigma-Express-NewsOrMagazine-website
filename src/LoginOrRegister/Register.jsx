@@ -3,13 +3,16 @@ import { AuthContext } from '../AuthProvider/AuthProvider';
 import Swal from 'sweetalert2';
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const Register = () => {
-
     const navigate = useNavigate()
     const {signUp} = useContext(AuthContext)
     const [showPassword, setShowPassword] = useState(false)
+    
+    const location = useLocation();
+    
+   
 
     const handleRegister = e =>{
         e.preventDefault();
@@ -19,7 +22,8 @@ const Register = () => {
         
         signUp(email, password)
         .then((userCredential) => {
-            navigate('/')
+            navigate(location?.state ? location?.state : '/');
+
             Swal.fire({
                 position: "top-end",
                 icon: "success",
@@ -27,6 +31,9 @@ const Register = () => {
                 showConfirmButton: false,
                 timer: 1500
               });
+
+            
+
           })
           .catch((error) => {
               const errorCode = error.code;

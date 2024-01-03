@@ -7,7 +7,7 @@ const Middle = ({filterNews}) => {
             {
                 middleNewsFilter.map(middleNews =>
 
-                    <div className="relative mb-3">
+                    <div key={middleNews._id} className="relative mb-3">
                         <img
                             className="z-10 relative"
                             src={middleNews.newsUrl}

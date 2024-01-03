@@ -1,9 +1,9 @@
-import { useLoaderData } from "react-router-dom";
+import useAllNews from "../../hooks/useAllNews";
 import Home from "../Home/Home";
 
 const Fashion = () => {
-    const allNews = useLoaderData();
-    const filterNews = allNews.filter(news => news.section === 'fashion')
+    const [news, loading] = useAllNews()
+    const filterNews = news.filter(fashion => fashion.section === 'fashion')
     return (
         <div>
             <Home title="fashion" filterNews={filterNews}></Home>
