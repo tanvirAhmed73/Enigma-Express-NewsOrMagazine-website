@@ -21,6 +21,7 @@ import Login from './LoginOrRegister/Login';
 import AuthProvider, { AuthContext } from './AuthProvider/AuthProvider';
 import PrivateRoutes from './PrivateRoutes/PrivateRoutes';
 import DashBoardLayout from './Dashboard/DashBoardLayout/DashBoardLayout';
+import AllNews from './Dashboard/Pages/AllNews/AllNews';
 
 const router = createBrowserRouter([
   {
@@ -72,21 +73,35 @@ const router = createBrowserRouter([
       {
           path: 'addNews',
           element: <PrivateRoutes><AddNews></AddNews></PrivateRoutes>
-      }
+      },
+      {
+          path: 'allNews',
+          element: <PrivateRoutes><AllNews></AllNews></PrivateRoutes>
+      },
       
     ]
 
   }
 ]);
 
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery,
+} from '@tanstack/react-query'
+
+
+const queryClient = new QueryClient()
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthProvider>
-      <div className='font-Poppins'>
-        <RouterProvider router={router} />
-      </div>
+      <QueryClientProvider client={queryClient}>
+          <div className='font-Poppins'>
+            <RouterProvider router={router} />
+          </div>
+      </QueryClientProvider>
     </AuthProvider>
   </React.StrictMode>,
 )

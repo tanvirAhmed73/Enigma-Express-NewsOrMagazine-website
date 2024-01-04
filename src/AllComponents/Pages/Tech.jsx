@@ -3,7 +3,7 @@ import Home from "../Home/Home";
 import useAllNews from "../../hooks/useAllNews";
 
 const Tech = () => {
-    const [news, loading] = useAllNews()
+    const [news] = useAllNews()
     const filterNews = news.filter(tech => tech.section === 'tech')
     
     return (

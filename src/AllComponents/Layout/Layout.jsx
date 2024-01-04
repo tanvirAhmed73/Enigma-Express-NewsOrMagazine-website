@@ -10,10 +10,8 @@ const Layout = () => {
     return (
         <div>
             {noHeaderFooter || <Navbar></Navbar>}
-            
             <Outlet></Outlet>
             {noHeaderFooter ||<Footer></Footer>}
-               
         </div>
     );
 };
