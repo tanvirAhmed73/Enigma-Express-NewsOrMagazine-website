@@ -1,5 +1,5 @@
 import moment from "moment";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import Marquee from "react-fast-marquee";
 import { FaFacebook } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
@@ -8,10 +8,13 @@ import { FaInstagramSquare } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import ReactLoading from 'react-loading';
+import useAllUsers from "../../hooks/useAllUsers";
+import useAdmin from "../../hooks/useAdmin";
+import useAxiosAdmin from "../../hooks/useAxiosAdmin";
 
 const Navbar = () => {
   const {user,loading,LogOut} = useContext(AuthContext);
-
+  const [isAdmin] = useAdmin()
   const handleLogOut = ()=>{
     LogOut()
       .then(() => {
@@ -21,7 +24,7 @@ const Navbar = () => {
       });
   }
 
-
+  
   return (
     <div>
       {/* cover Picture */}
@@ -100,7 +103,7 @@ const Navbar = () => {
                 <Link className="hover:bg-slate-700" to={'/business'}>BUSINESS</Link>
               </li>
               {
-                user? 
+                isAdmin? 
                 <li>
                 <Link className="hover:bg-slate-700" to={'/dashboard'}>DASHBOARD</Link>
                 </li>
@@ -146,7 +149,7 @@ const Navbar = () => {
                 <Link className="hover:bg-slate-700" to={'/business'}>BUSINESS</Link>
               </li>
               {
-                user? 
+                isAdmin? 
                 <li>
                 <Link className="hover:bg-slate-700" to={'/dashboard'}>DASHBOARD</Link>
                 </li>

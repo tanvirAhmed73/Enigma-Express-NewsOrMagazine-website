@@ -4,14 +4,17 @@ import Swal from 'sweetalert2';
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import useAxiosAdmin from '../hooks/useAxiosAdmin';
+import SocialLogin from './SocialLogin';
 
 const Register = () => {
     const navigate = useNavigate()
     const {signUp} = useContext(AuthContext)
     const [showPassword, setShowPassword] = useState(false)
-    
+    const [showError, setShowError] = useState('')
     const location = useLocation();
     
+    const axiosAdmin = useAxiosAdmin()
    
 
     const handleRegister = e =>{
@@ -19,18 +22,36 @@ const Register = () => {
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
+
+        setShowError('');
         
+        if(password.length<6){
+            setShowError('Password Should Be At Least 6 Characters')
+            return
+        }
+        else if(!/^(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]).{6,}$/.test(password)){
+            setShowError('Your password should have One Upper Case, & Special')
+            return
+        }
+
         signUp(email, password)
         .then((userCredential) => {
-            navigate(location?.state ? location?.state : '/');
+            const userEmail = {email}
+            axiosAdmin.post('/user', userEmail)
+            .then(res =>{
+                if(res.data.insertedId){
+                    navigate(location?.state ? location?.state : '/');
+        
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Register Successfully",
+                        showConfirmButton: false,
+                        timer: 1500
+                      });
+                }
+            })
 
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Register Successfully",
-                showConfirmButton: false,
-                timer: 1500
-              });
 
             
 
@@ -87,9 +108,13 @@ const Register = () => {
                                     }
                                 </span>
                         </div>
+                        {
+                            showError && <p className=" text-red-700" >{showError}</p>
+                        }
                         </div>
                         <div className="form-control mt-6">
                             <button className="btn btn-primary">Register</button>
+                            <SocialLogin></SocialLogin>
                             <Link to={'/login'} className='mt-1 hover:underline'>Already Have An Account?</Link>
                         </div>
 

@@ -12,9 +12,7 @@ const DnavBar = () => {
                         <li>
                             <Link to={'/'}>Home</Link>
                         </li>
-                        <li>
-                            <Link>Change Headling And Cover Page</Link>
-                        </li>
+                        
                         <li>
                             <Link to={'addNews'}>Add News</Link>
                         </li>
@@ -22,7 +20,7 @@ const DnavBar = () => {
                             <Link to={'allNews'}>Today All News</Link>
                         </li>
                         <li>
-                            <a>Make Admin</a>
+                            <Link to={'allUser'}>Make Admin</Link>
                         </li>
                     </ul>
                     </div>
@@ -33,9 +31,7 @@ const DnavBar = () => {
                     <li>
                             <Link to={'/'}>Home</Link>
                         </li>
-                        <li>
-                            <Link>Change Headling And Cover Page</Link>
-                        </li>
+                        
                         <li>
                             <Link to={'addNews'}>Add News</Link>
                         </li>
@@ -43,7 +39,7 @@ const DnavBar = () => {
                             <Link to={'allNews'}>Today All News</Link>
                         </li>
                         <li>
-                            <a>Make Admin</a>
+                            <Link to={'allUser'}>Make Admin</Link>
                         </li>
                     </ul>
                 </div>

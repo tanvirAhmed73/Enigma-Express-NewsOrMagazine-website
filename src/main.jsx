@@ -11,7 +11,7 @@ import Layout from './AllComponents/Layout/Layout';
 import Home from './AllComponents/Home/Home';
 import Tech from './AllComponents/Pages/Tech';
 import Entertainment from './AllComponents/Pages/Entertainment';
-import AddNews from './AdminAccess/AddNews';
+import AddNews from './Dashboard/Pages/AddNews/AddNews';
 import Business from './AllComponents/Pages/Business';
 import Sports from './AllComponents/Pages/Sports';
 import Fashion from './AllComponents/Pages/Fashion';
@@ -72,12 +72,20 @@ const router = createBrowserRouter([
     children:[ 
       {
           path: 'addNews',
-          element: <PrivateRoutes><AddNews></AddNews></PrivateRoutes>
+          element: <AddNews></AddNews>
+      },
+      {
+          path: '/dashboard',
+          element: <AddNews></AddNews>
       },
       {
           path: 'allNews',
-          element: <PrivateRoutes><AllNews></AllNews></PrivateRoutes>
+          element: <AllNews></AllNews>
       },
+      {
+          path: 'allUser',
+          element: <AllUsers></AllUsers>
+      }
       
     ]
 
@@ -89,6 +97,8 @@ import {
   QueryClientProvider,
   useQuery,
 } from '@tanstack/react-query'
+import AllUsers from './Dashboard/Pages/Users/AllUsers';
+import CoverAndLatestEdit from './Dashboard/Pages/CoverAndLatestEdit/CoverAndLatestEdit';
 
 
 const queryClient = new QueryClient()

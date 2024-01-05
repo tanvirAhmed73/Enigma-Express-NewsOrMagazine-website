@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "./useAxiosSecure";
-import axios from "axios";
+
 
 const useToadyAllNews = () => {
     const axiosSecure = useAxiosSecure()

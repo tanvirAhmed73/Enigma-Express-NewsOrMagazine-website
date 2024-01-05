@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 import Swal from 'sweetalert2';
 import axios from 'axios';
+import SocialLogin from './SocialLogin';
 const Login = () => {
     const {logIn} = useContext(AuthContext)
     const [showPassword, setShowPassword] = useState(false)
@@ -19,6 +20,7 @@ const Login = () => {
         
         logIn(email,password)
         .then((userCredential) => {
+            navigate(location.state? location.state : '/')
             // Signed in 
             Swal.fire({
                 position: "top-end",
@@ -27,13 +29,8 @@ const Login = () => {
                 showConfirmButton: false,
                 timer: 1500
               });
-            const user = {email};
-            axios.post('http://localhost:5000/jwt', user, {withCredentials: true})
-            .then(res =>{
-                if(res.data.success){
-                    navigate(location.state? location.state : '/')
-                }
-            })
+                
+            
 
           })
           .catch((error) => {
@@ -93,6 +90,7 @@ const Login = () => {
                         </div>
                         <div className="form-control mt-6">
                             <button className="btn btn-primary">Login</button>
+                            <SocialLogin></SocialLogin>
                             <Link to={'/register'} className='mt-1 hover:underline'>Need to create an account?</Link>
                         </div>
 
