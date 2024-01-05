@@ -26,7 +26,7 @@ const AddNews = () => {
             publisherPictureUrl
         }
 
-        fetch("http://localhost:5000/allNews",{
+        fetch("https://enigma-express-news-server.vercel.app/allNews",{
             method : "POST",
             headers: {
                 "Content-Type": "application/json",

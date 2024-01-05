@@ -6,7 +6,7 @@ import RightSide from "../LayoutLeftMiddleRight/RightSide.jsx";
 const Home = ({title, filterNews}) => {
     const [ad, setAd] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/allNews')
+        fetch('https://enigma-express-news-server.vercel.app/allNews')
           .then(res => res.json())
           .then(data => setAd(data))
           .catch(error => console.error("Error fetching data:", error));

@@ -4,7 +4,7 @@ const useAllNews = () => {
     const [news, setNews] = useState([])
     const [loading, setLoading] = useState(true)
     useEffect(()=>{
-        fetch('http://localhost:5000/allNews')
+        fetch('https://enigma-express-news-server.vercel.app/allNews')
         .then(res => res.json())
         .then( data => {
             setNews(data)
