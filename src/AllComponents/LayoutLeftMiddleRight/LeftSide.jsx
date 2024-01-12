@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import SectionTitle from "../SectionTitle/SectionTitle";
 
 const LeftSide = ({title, filterNews}) => {
@@ -7,13 +8,15 @@ const LeftSide = ({title, filterNews}) => {
             <SectionTitle title={title}></SectionTitle>
             {
                 leftNewsFilter.map(news => 
-                <div key={news._id} className="mb-2 md:mb-10 text-xs">
+                <Link to={`/details/${news._id}`}>
+                    <div key={news._id} className="mb-2 md:mb-10 text-xs">
                     <img src={news.newsUrl} alt="" />
                     <span className="font-semibold text-gray-600">{news.section.toUpperCase()} / </span>
                      
                     <span className="text-gray-600">Date</span>
                     <h1 className="font-bold md:font-extrabold md:text-sm lg:text-xl text-black">{news.newsHeading}</h1>
                 </div>
+                </Link>
                 )
             }
 

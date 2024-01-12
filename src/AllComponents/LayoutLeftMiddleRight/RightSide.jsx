@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 const RightSide = ({filterNews}) => {
     const advertiseMent = filterNews.filter(ad=> ad.sideShow === 'advertisement')
@@ -13,7 +14,8 @@ const RightSide = ({filterNews}) => {
             </div>
             {
                 advertiseMent.map(ad => 
-                    <div key={ad._id} className="md:flex gap-3 text-xs">
+                    <Link to={`/details/${ad._id}`}>
+                        <div key={ad._id} className="md:flex gap-3 text-xs">
                         <div>
                             <img className="w-[90px] h-[70px]" src={ad.newsUrl} alt="" />
                         </div>
@@ -23,6 +25,7 @@ const RightSide = ({filterNews}) => {
                             <h1 className="text-xs lg:text-lg text-black font-bold">{ad.newsHeading}</h1>
                         </div>
                     </div>
+                    </Link>
                     )
             }
         </div>

@@ -63,6 +63,11 @@ const router = createBrowserRouter([
     {
       path: '/login',
       element: <Login></Login>
+    },
+    {
+      path: '/details/:id',
+      element: <DetailsPages></DetailsPages>,
+      loader : ()=>fetch('https://enigma-express-news-server.vercel.app/allNews')
     }
   ]
   },
@@ -99,6 +104,7 @@ import {
 } from '@tanstack/react-query'
 import AllUsers from './Dashboard/Pages/Users/AllUsers';
 import CoverAndLatestEdit from './Dashboard/Pages/CoverAndLatestEdit/CoverAndLatestEdit';
+import DetailsPages from './AllComponents/LayoutLeftMiddleRight/DetailsPages';
 
 
 const queryClient = new QueryClient()
